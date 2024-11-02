@@ -55,7 +55,7 @@ button.addEventListener("click", () => {
         alert("Ok you win. Click on the button and move on");
         button.textContent = "MOVE ON";
         button.onclick = function() {
-            window.location.href = "next_page.html"; 
+            window.location.href = "templates/ffriend.html"; 
         };
     }
 });
