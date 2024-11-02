@@ -1,8 +1,8 @@
 <h1>Here its TEAM NOVA'S useless project</h1>
-We the team of 3
-                RAVISANKAR S
-                GOKUL SURESH 
-                MERIN JOSEPH
+We the team of Three
+                RAVISANKAR S,
+                GOKUL SURESH, 
+                MERIN JOSEPH.
       We've created a website which detects whether the friendship is true of fake on the basis of entering the names,
       its purely a useless website as there are tasks to perform and more interesting things are followed.
 A QUICK DESCRIPTION:
