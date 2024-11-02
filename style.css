@@ -1,0 +1,81 @@
+body, h1, p {
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  font-family: 'Raleway', sans-serif;
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  overflow: hidden; 
+}
+
+
+.container {
+  position: relative; 
+  min-height: 100vh; 
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+h1 {
+  font-size: 3rem;
+  color: #5c6bc0;
+  transition: transform 0.3s, color 0.3s;
+}
+
+
+p {
+  font-size: 1.5rem;
+  color: #7e57c2;
+  margin: 20px 0;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.jumping-button {
+  font-family: 'Raleway', sans-serif;
+  padding: 20px 40px;
+  font-size: 1.5rem;
+  color: white;
+  background-color: blueviolet; 
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  position: absolute; 
+  z-index: 2; 
+}
+
+footer {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: grey;
+  font-size: 1rem;
+  text-align: center;
+}
+
+
+h1:hover {
+  transform: scale(1.05);
+  color: #3949ab;
+}
+
+p:hover {
+  transform: scale(1.05);
+  color: #5e35b1;
+}
+
+
+.jumping-button:hover {
+  background-color: rgb(170, 90, 245); 
+}

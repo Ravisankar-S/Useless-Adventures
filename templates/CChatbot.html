@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Useless Adventures -- Team Nova</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+            margin: 0;
+        }
+        
+        /* Chat container styling */
+        .chat-container {
+            width: 400px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: fadeIn 1s ease;
+        }
+
+        /* Animation for fade-in effect on chat container */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Header styling */
+        .chat-header {
+            padding: 15px;
+            background-color: #64b5f6;
+            color: white;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        
+        /* Chat box styling */
+        .chat-box {
+            height: 400px;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Message styling */
+        .message {
+            max-width: 70%;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 15px;
+            line-height: 1.4;
+            word-wrap: break-word;
+            display: inline-block;
+            opacity: 0;
+            animation: slideIn 0.5s forwards;
+        }
+        
+        /* Animation for message slide-in */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Bot message styling */
+        .bot-message {
+            align-self: flex-start;
+            background-color: #e0f7fa;
+            color: #00796b;
+        }
+        
+        /* User message styling */
+        .user-message {
+            align-self: flex-end;
+            background-color: #c8e6c9;
+            color: #2e7d32;
+        }
+        
+        /* Input area styling */
+        .input-area {
+            display: flex;
+            border-top: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f8f9fa;
+        }
+        
+        /* Input styling */
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            font-size: 15px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        /* Input focus effect */
+        input[type="text"]:focus {
+            border-color: #64b5f6;
+        }
+        
+        /* Send button styling */
+        button {
+            margin-left: 10px;
+            padding: 10px 15px;
+            font-size: 15px;
+            color: #ffffff;
+            background-color: #64b5f6;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        
+        /* Button hover and click effect */
+        button:hover {
+            background-color: #42a5f5;
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: grey;
+            font-size: 1rem;
+            text-align: center;
+            z-index: 2;
+        }
+        
+        /* MOVE ON button styling */
+        .move-on-button {
+            padding: 10px 15px;
+            margin: 20px auto;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            display: none;
+        }
+        
+        .move-on-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="chat-container">
+    <div class="chat-header">NOVA -- SMART CHATBOT</div>
+    <div class="chat-box" id="chatBox">
+        <div class="message bot-message">Hey there! I'm here for you. I'm sorry to hear about the fake friend situation. If you need someone to talk to, I'm here to help. How can I assist you today?</div>
+    </div>
+    <div class="input-area">
+        <input type="text" id="userInput" placeholder="Type a message..." onkeypress="checkEnter(event)">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+    <button class="move-on-button" id="moveOnButton" onclick="moveOn()">MOVE ON</button>
+</div>
+
+<script>
+    let messageCount = 0; // Counter for user messages
+
+    function sendMessage() {
+        const chatBox = document.getElementById("chatBox");
+        const userInput = document.getElementById("userInput").value;
+
+        if (userInput.trim() !== "") {
+            // Display user's message
+            const userMessage = document.createElement("div");
+            userMessage.className = "message user-message";
+            userMessage.textContent = userInput;
+            chatBox.appendChild(userMessage);
+            
+            // Increment message count
+            messageCount++;
+
+            // Check the message count to display specific bot responses
+            if (messageCount === 1) {
+                displayBotMessage("Oops! Something went wrong... Please Try Again.");
+            } 
+            else if (messageCount === 2) {
+                displayBotMessage("Experiencing some errors... Try Once Again!!");
+            } 
+            else if (messageCount === 3) {
+                displayBotMessage("Time Wasted Successfully!! But you're gonna like the next one, I promise :)");
+                document.getElementById("moveOnButton").style.display = "block"; // Show the MOVE ON button
+            }
+
+            // Clear input field and scroll chat box to the bottom
+            document.getElementById("userInput").value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    }
+
+    function displayBotMessage(text) {
+        const chatBox = document.getElementById("chatBox");
+        const botMessage = document.createElement("div");
+        botMessage.className = "message bot-message";
+        botMessage.textContent = text;
+        chatBox.appendChild(botMessage);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function checkEnter(event) {
+        if (event.key === "Enter") {
+            sendMessage(); // Call sendMessage() when Enter is pressed
+        }
+    }
+
+    function moveOn() {
+        window.location.href = "next_page.html"; // Change this to the desired page URL
+    }
+</script>
+
+<footer>
+    © Team NOVA -- Useless Adventures
+</footer>
+
+</body>
+</html>
