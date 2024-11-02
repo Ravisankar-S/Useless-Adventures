@@ -126,7 +126,7 @@
     <div id="loading">Analyzing friendship...</div>
     <div id="result"></div>
     <div id="advice" class="advice-text"></div>
-    <button id="nextTaskBtn" onclick="resetForm()" style="display: none; margin-top: 20px;">Next Task</button>
+    <button id="nextTaskBtn" onclick="resetForm()" style="display: none; margin-top: 20px;">Reset</button>
 </div>
 
 <!-- Popup sound for True Friend result -->
@@ -217,7 +217,7 @@
         attempts = 0; // Reset attempts counter
         const checkButton = document.getElementById("checkButton");
         checkButton.disabled = true;
-        checkButton.textContent = "Try 2 more times";
+        checkButton.textContent = " 🔍";
     }
 
     // Attach event listeners to input fields
