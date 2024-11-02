@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>True Friend or Fake Friend Detector</title>
     <style>
-        /* Reset and basic styling */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -22,7 +21,6 @@
             overflow: hidden;
             color: #fff;
         }
-        /* Animated Gradient Background */
         body::before {
             content: '';
             position: absolute;
@@ -40,7 +38,6 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        /* Container Styling */
         .container {
             text-align: center;
             padding: 25px;
@@ -51,7 +48,6 @@
             backdrop-filter: blur(10px);
             position: relative;
         }
-        /* Input and Floating Button Styling */
         input[type="text"] {
             padding: 10px;
             margin: 10px 0;
@@ -84,7 +80,6 @@
             background-color: #bbb;
             cursor: not-allowed;
         }
-        /* Result, Advice, and Loading Animation */
         #result, #advice {
             margin-top: 20px;
             font-size: 1.2em;
@@ -102,15 +97,33 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
         }
-        /* True Friend styling */
         .true-friend {
-            color: #00ff00; /* Green color for True Friend */
+            color: #00ff00;
         }
         .advice-text {
             font-size: 1em;
             color: #fff;
             margin-top: 10px;
             font-style: italic;
+        }
+        .button-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s ease;
+        }
+        .button-container button:hover {
+            background-color: #2980b9;
         }
     </style>
 </head>
@@ -126,45 +139,43 @@
     <div id="loading">Analyzing friendship...</div>
     <div id="result"></div>
     <div id="advice" class="advice-text"></div>
-    <button id="nextTaskBtn" onclick="resetForm()" style="display: none; margin-top: 20px;">Reset</button>
+
+    <div class="button-container">
+        
+        <button id="resetBtn" onclick="resetForm()" style="display: none;">Reset</button>
+	<button id="nextTaskBtn" onclick="nextTask()" style="display: none;">Next Task</button>
+    </div>
 </div>
 
-<!-- Popup sound for True Friend result -->
-<audio id="popupSound" src="https://www.soundjay.com/button/sounds/button-09.mp3" preload="auto"></audio>
-
 <script>
-    let attempts = 0; // Initialize attempt counter
+    let attempts = 0;
 
     function incrementAttempts() {
         attempts++;
         const checkButton = document.getElementById("checkButton");
 
-        // Enable the "Check" button after 2-3 attempts
         if (attempts >= 2) {
             checkButton.disabled = false;
-            checkButton.textContent = "🔍"; // Reset button text to the search icon
+            checkButton.textContent = "🔍";
         } else {
-            checkButton.textContent = `Try ${3 - attempts} more times`; // Show remaining tries
+            checkButton.textContent = `Try ${3 - attempts} more times`;
         }
     }
 
-    // Function to detect friend status
     function detectFriend() {
-        // Clear previous result and advice, show loading animation
         document.getElementById('result').textContent = "";
         document.getElementById('advice').textContent = "";
         document.getElementById('result').style.opacity = 0;
         document.getElementById('advice').style.opacity = 0;
         document.getElementById('loading').style.display = "block";
-        document.getElementById('nextTaskBtn').style.display = "none"; // Hide Next Task button initially
+        document.getElementById('nextTaskBtn').style.display = "none";
+        document.getElementById('resetBtn').style.display = "none";
 
-        // Simulate loading time for suspense
         setTimeout(() => {
             document.getElementById('loading').style.display = "none";
             const yourName = document.getElementById('yourName').value || "You";
             const friendName = document.getElementById('friendName').value || "Friend";
 
-            // 50% chance to get a "True Friend" result
             const isTrueFriend = Math.random() > 0.5;
             let message;
             let advice;
@@ -173,8 +184,8 @@
             
             if (isTrueFriend) {
                 message = `${yourName}, your friend ${friendName} is a True Friend! 🎉`;
-                resultElement.classList.add('true-friend');  // Green color for True Friend
-                document.getElementById('popupSound').play(); // Play popup sound
+                resultElement.classList.add('true-friend');
+                document.getElementById('popupSound').play();
                 advice = "Cherish and support each other. True friends are hard to find, so always stay connected and help each other grow.";
             } else {
                 const fakeMessages = [
@@ -189,22 +200,20 @@
                     "Be mindful of how much you invest in this friendship. True friends add value, not stress!",
                     "Don't be afraid to re-evaluate this friendship. Invest your time in those who reciprocate your kindness."
                 ];
-                // Pick a random fake friend message and advice
                 message = fakeMessages[Math.floor(Math.random() * fakeMessages.length)];
                 advice = fakeAdvice[Math.floor(Math.random() * fakeAdvice.length)];
-                resultElement.classList.remove('true-friend'); // Default color for Fake Friend
+                resultElement.classList.remove('true-friend');
             }
 
-            // Display the result and advice
             resultElement.textContent = message;
             adviceElement.textContent = "Advice: " + advice;
             resultElement.style.opacity = 1;
             adviceElement.style.opacity = 1;
-            document.getElementById('nextTaskBtn').style.display = "inline-block"; // Show Next Task button
-        }, 2000); // 2-second delay for suspense
+            document.getElementById('nextTaskBtn').style.display = "inline-block";
+            document.getElementById('resetBtn').style.display = "inline-block";
+        }, 2000);
     }
 
-    // Reset form for a new task
     function resetForm() {
         document.getElementById('yourName').value = "";
         document.getElementById('friendName').value = "";
@@ -213,17 +222,23 @@
         document.getElementById('result').style.opacity = 0;
         document.getElementById('advice').style.opacity = 0;
         document.getElementById('nextTaskBtn').style.display = "none";
+        document.getElementById('resetBtn').style.display = "none";
         
-        attempts = 0; // Reset attempts counter
+        attempts = 0;
         const checkButton = document.getElementById("checkButton");
         checkButton.disabled = true;
         checkButton.textContent = " 🔍";
     }
 
-    // Attach event listeners to input fields
-    document.getElementById('yourName').addEventListener('input', incrementAttempts);
-    document.getElementById('friendName').addEventListener('input', incrementAttempts);
+    function nextTask() {
+        alert("Moving to the next task!");
+        resetForm();
+    }
+
+    document.getElementById("yourName").addEventListener("input", incrementAttempts);
+    document.getElementById("friendName").addEventListener("input", incrementAttempts);
 </script>
 
 </body>
 </html>
+
