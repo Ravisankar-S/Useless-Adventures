@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jolly+Lodger&family=Raleway:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Useless Adventures -- Team Nova</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #282741;
+      color: #FFBE53;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    h1 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 3rem;
+      margin: 20px;
+      color: #FF6138;
+      animation: pop-in 1s ease;
+    }
+
+    p {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.2rem;
+      color: #FFF;
+      max-width: 500px;
+      margin: 20px auto;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #FFBE53;
+      opacity: 0.8;
+      pointer-events: none;
+      animation: fall 2.5s ease-out forwards;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.9rem;
+      color: #FFF;
+    }
+
+    @keyframes pop-in {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>THANK YOU!</h1>
+  <p>Thank you for going through our 'Useless Adventure'. Hope you had fun. By the way <strong>CLICK ANYWHERE</strong> for a fun little surprise. </p>
+  <footer>&copy; Team NOVA -- Useless Adventures</footer>
+
+  <script>
+    function triggerConfetti(x, y) {
+      for (let i = 0; i < 80; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = `${x + (Math.random() - 0.5) * 200}px`;
+        confetti.style.top = `${y + (Math.random() - 0.5) * 200}px`;
+        confetti.style.backgroundColor = getRandomColor();
+        confetti.style.animationDuration = `${Math.random() * 2 + 1}s`;
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        document.body.appendChild(confetti);
+        confetti.addEventListener("animationend", () => confetti.remove());
+      }
+    }
+
+    function getRandomColor() {
+      const colors = ["#FF6138", "#FFBE53", "#2980B9", "#FFF"];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      triggerConfetti(window.innerWidth / 2, window.innerHeight / 2);
+    });
+
+    document.addEventListener("click", (event) => {
+      triggerConfetti(event.clientX, event.clientY);
+    });
+  </script>
+
+</body>
+</html>
