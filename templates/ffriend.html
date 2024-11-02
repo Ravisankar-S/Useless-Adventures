@@ -230,10 +230,11 @@
         checkButton.textContent = " 🔍";
     }
 
-    function nextTask() {
-        alert("Moving to the next task!");
-        resetForm();
-    }
+   function nextTask() {
+    alert("Moving to the next task!");
+    window.location.href = "CChatbot.html"; 
+}
+
 
     document.getElementById("yourName").addEventListener("input", incrementAttempts);
     document.getElementById("friendName").addEventListener("input", incrementAttempts);
