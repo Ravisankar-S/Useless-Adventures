@@ -3,8 +3,8 @@ We the team of Three
                 RAVISANKAR S,
                 GOKUL SURESH, 
                 MERIN JOSEPH.
-      We've created a website which detects whether the friendship is true of fake on the basis of entering the names,
-      its purely a useless website as there are tasks to perform and more interesting things are followed.
+      We've created a website which detects whether the friendship is true or fake on the basis of entering the names,
+      its purely a useless website which contains specific tasks to perform and more interesting things are followed.
 A QUICK DESCRIPTION:
               Introducing the True/Fake Friend Detector—the ultimate, totally unnecessary tool to analyze your friendships in all the wrong ways! 
               Packed with quirky, random tasks, this project is designed purely for your amusement (and maybe to raise a few eyebrows). 
