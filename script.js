@@ -45,9 +45,9 @@ button.addEventListener("click", () => {
     if (clickCount < 7) {
         button.textContent = "Let's Start";
     } else if (clickCount === 7) {
-        button.textContent = "Common Man";
+        button.textContent = "Common Buddy";
     } else if (clickCount === 12) {
-      button.textContent = "You Can Do it";
+      button.textContent = "You Can Do It";
     } else if (clickCount === 16) {
       button.textContent = "Almost There!";
     }
