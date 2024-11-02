@@ -2,7 +2,7 @@
 We the team of Three
                 RAVISANKAR S,
                 GOKUL SURESH, 
-                MERIN JOSEPH.
+                MERIN JOSEPH.<br>
       We've created a website which detects whether the friendship is true or fake on the basis of entering the names,
       its purely a useless website which contains specific tasks to perform and more interesting things are followed.
 A QUICK DESCRIPTION:
